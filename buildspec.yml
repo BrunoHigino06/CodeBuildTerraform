@@ -11,4 +11,5 @@ phases:
     commands:
       - echo Initializing terraform apply
       - cd $CODEBUILD_SRC_DIR/
+      - terraform init
       - terraform apply -auto-approve
