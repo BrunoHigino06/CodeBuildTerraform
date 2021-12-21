@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+    - echo Updating
+    - apt update -y
+    - echo Upgrading
+    - apt upgrade -y
+    - echo Installing nginx
+    - apt install nginx -y
+
+  build:
+    commands:
+      - echo testing ls
+      - cd $CODEBUILD_SRC_DIR/
