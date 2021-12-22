@@ -3,14 +3,17 @@ version: 0.2
 phases:
   install:
     commands:
-    - echo Updating
     - yum update -y
-    - echo Upgrading
     - yum upgrade -y
+  pre_build:
+    - echo coping terraform.tfstate from S3
+    - aws s3 cp s3://tfstate202112/teste/terraform.tfstate ./terraform.tfstate
   build:
     commands:
       - echo Initializing terraform apply
       - cd $CODEBUILD_SRC_DIR/
       - terraform init
-      - terraform destroy -auto-approve
-      - ls
+      - terraform apply -auto-approve
+      - echo coping new tfstate to S3
+      - aws s3 cp "./terraform.tfstate" "s3://tfstate202112/teste/terraform.tfstate"
+

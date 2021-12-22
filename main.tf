@@ -1,7 +1,7 @@
 provider "aws" {
   region     = "us-east-1"
-  access_key = "AKIAVP4CNBQWT5L7TBMG"
-  secret_key = "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"
+  access_key = "AKIAT3DHOTLA3ZVYB6UC"
+  secret_key = "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"
 }
 
 # Network
@@ -48,7 +48,7 @@ resource "aws_security_group_rule" "FrontEndSGIngressSSH" {
   type              = "ingress"
   from_port         = 22
   to_port           = 22
-  protocol          = "all"
+  protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.FrontEndSG.id
 
