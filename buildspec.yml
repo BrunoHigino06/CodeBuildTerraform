@@ -3,11 +3,12 @@ version: 0.2
 phases:
   install:
     commands:
-    - yum update -y
-    - yum upgrade -y
+      - yum update -y
+      - yum upgrade -y
   pre_build:
-    - echo coping terraform.tfstate from S3
-    - aws s3 cp s3://terraformpipeline202112/tfstate/terraform.tfstate ./terraform.tfstate
+    commands:
+      - echo coping terraform.tfstate from S3
+      - aws s3 cp s3://terraformpipeline202112/tfstate/terraform.tfstate ./terraform.tfstate
   build:
     commands:
       - echo Initializing terraform apply
