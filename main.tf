@@ -44,19 +44,6 @@ resource "aws_security_group_rule" "FrontEndSGIngress" {
   ]
 }
 
-resource "aws_security_group_rule" "FrontEndSGIngressSSH" {
-  type              = "ingress"
-  from_port         = 22
-  to_port           = 22
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.FrontEndSG.id
-
-  depends_on = [
-    aws_security_group.FrontEndSG
-  ]
-}
-
 #Egress
 
 resource "aws_security_group_rule" "FrontEndSGEgress" {
