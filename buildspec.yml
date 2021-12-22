@@ -7,7 +7,7 @@ phases:
     - yum upgrade -y
   pre_build:
     - echo coping terraform.tfstate from S3
-    - aws s3 cp s3://tfstate202112/teste/terraform.tfstate ./terraform.tfstate
+    - aws s3 cp s3://terraformpipeline202112/tfstate/terraform.tfstate ./terraform.tfstate
   build:
     commands:
       - echo Initializing terraform apply
@@ -15,5 +15,5 @@ phases:
       - terraform init
       - terraform apply -auto-approve
       - echo coping new tfstate to S3
-      - aws s3 cp "./terraform.tfstate" "s3://tfstate202112/teste/terraform.tfstate"
+      - aws s3 cp "./terraform.tfstate" "s3://terraformpipeline202112/tfstate/terraform.tfstate"
 
